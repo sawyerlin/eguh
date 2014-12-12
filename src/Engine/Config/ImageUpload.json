@@ -1,0 +1,30 @@
+{
+    "dependencies": [
+        {
+            "abstract": {
+                "src": "Lib/TestLib/TesterInterface.php",
+                "namespace": "Lib\\TestLib\\TesterInterface"
+            },
+            "concrete": {
+                "src": "Lib/TestLib/Tester.php",
+                "namespace": "Lib\\TestLib\\Tester"
+            }
+        }
+    ],
+    "tasks": [
+        {
+            "src": "Plugin/Test/TestAction.php",
+            "namespace": "Plugin\\Test\\TestAction",
+            "description": "First Test",
+            "options": {
+            }
+        },
+        {
+            "src": "Plugin/Test/TestAction.php",
+            "namespace": "Plugin\\Test\\TestAction",
+            "description": "Second Test",
+            "options": {
+            }
+        }
+    ]
+}
