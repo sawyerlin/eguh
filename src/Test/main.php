@@ -11,8 +11,8 @@ $container = new Ioc\SContainer();
 
 $container->register("Lib\TestLib\TesterInterface", "Lib\TestLib\Tester");
 
-$action = new Plugin\Test\TestAction();
+$obj = $container->resolve("Plugin\Test\TestAction");
 
-$container->resolve($action);
+echo $obj->run();
 
 ?>

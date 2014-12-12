@@ -5,7 +5,10 @@ use Lib\TestLib\TesterInterface;
 
 class TestAction extends Action {
 
-    public function __construct() {
+    protected $tester;
+
+    public function __construct(TesterInterface $tester) {
+        $this->tester = $tester;
         parent::__construct();
     }
 
@@ -14,13 +17,8 @@ class TestAction extends Action {
     }
 
     public function run() {
-        echo 'TestAction run';
+        $this->tester->Test();
     }
-
-    public function Test(TesterInterface $tester, $a) {
-
-    }
-
 }
 
 ?>

@@ -13,28 +13,45 @@ class SContainer implements SContainerInterface {
 
     public function register($interface, $class) {
 
-        $this->registrations[$interface] = new ReflectionClass($class);
+        $this->registrations[$interface] = $class;
     }
 
-    public function resolve($obj) {
+    // Support Only Constructor Injection
+    public function resolve($concrete) {
 
-        $class= get_class($obj);
+        $reflector = new ReflectionClass($concrete);
 
-        $reflector = new ReflectionClass($class);
+        $constructor = $reflector->getConstructor();
 
-        $methods = $reflector->getMethods();
+        $parameters = $constructor->getParameters();
 
+        $instances = [];
+        
         // ToDo: Reflection of $obj to inject parameters of each method (constructor, public methods)
-        foreach ($methods as $method) {
+        foreach ($parameters as $parameter) {
 
-            $parameters = $method->getParameters();
+            $parameterType = $parameter->getClass();
 
-            foreach ($parameters as $parameter) {
-                $class = $parameter->getClass();
-                if (is_object($class)) {
-                    return $this->registrations[$class->getName()]->newInstance();
-                }
+            // Is reference type
+            if (is_object($parameterType)) {
+                $parameterTypeName = $parameterType->getName();
+                $parameterValue = $this->build($parameterTypeName);
+
+                array_push($instances, $parameterValue);
             }
+        }
+
+        return $reflector->newInstanceArgs($instances);
+    }
+
+    private function build ($abstract) {
+
+        $concrete = $this->registrations[$abstract];
+
+        if (!is_null($concrete)) {
+            $reflector = new ReflectionClass($concrete);
+
+            return $reflector->newInstance();
         }
     }
 }
