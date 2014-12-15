@@ -1,17 +1,22 @@
-<?php
+<?php namespace Engine\Petri;
 
-class Place {
+use \Threaded;
 
-    public $id;
+class Place extends Node {
 
-    // ToDo: use Enum
-    public $type;
+    public function __construct() {
+        parent::__construct();
+    }
 
-    public $name;
+    public function move() {
+        foreach($this->arcs as $arc) {
+            $threaded = Threaded::from(function() use (&$arc) {
+                $arc->node->move();
+            });
 
-    public $description;
-
-    public $workflowId;
+            $threaded->run();
+        }
+    }
 }
 
 ?>

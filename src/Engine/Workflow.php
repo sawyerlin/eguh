@@ -1,4 +1,4 @@
-<?php
+<?php namespace Engine;
 
 class Workflow {
 
@@ -7,6 +7,7 @@ class Workflow {
     public $name;
 
     public $description;
+
 }
 
 ?>

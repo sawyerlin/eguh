@@ -1,16 +1,10 @@
-<?php
+<?php namespace Engine\Petri;
 
 class Token {
 
     public $id;
 
-    public $placeId;
-
-    public $status;
-
-    public $workflowInstanceId;
-
-    public $workflowId;
+    public $places;
 }
 
 ?>

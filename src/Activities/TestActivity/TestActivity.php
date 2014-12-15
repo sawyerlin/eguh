@@ -1,9 +1,9 @@
-<?php namespace Plugin\Test;
+<?php namespace Activities\TestActivity;
 
-use Model\Action;
+use Engine\Petri\Activity;
 use Lib\TestLib\TesterInterface;
 
-class TestAction extends Action {
+class TestActivity extends Activity {
 
     protected $tester;
 
@@ -17,7 +17,7 @@ class TestAction extends Action {
     }
 
     public function run() {
-        $this->tester->Test();
+        echo $this->tester->Test();
     }
 }
 

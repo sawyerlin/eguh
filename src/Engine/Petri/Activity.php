@@ -1,6 +1,10 @@
-<?php namespace Model;
+<?php namespace Engine\Petri;
 
-abstract class Action {
+abstract class Activity {
+
+    public $id;
+
+    public $status;
 
     protected function __construct() {
     
@@ -9,6 +13,7 @@ abstract class Action {
     abstract protected function init();
 
     abstract protected function run();
+
 }
 
 ?>

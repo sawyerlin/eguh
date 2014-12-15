@@ -1,20 +1,23 @@
-<?php
+<?php namespace Engine\Petri;
 
-class Transition {
+class Transition extends Node {
 
-    public $id;
-
-    public $name;
-
-    public $description;
-
-    // ToDo: Defin a trigger class
-    public $trigger;
-
-    public $workflowId;
-
-    // The activity which will do some work
     public $activity;
+
+    public function __construct(Activity $activity) {
+        parent::__construct();
+        $this->activity = $activity;
+        $this->activity->init();
+    }
+
+    public function move() {
+        
+        $this->activity->run();
+        
+        foreach($this->arcs as $arc) {
+            $arc->node->move();
+        }
+    }
 }
 
 ?>
