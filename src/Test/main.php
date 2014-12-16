@@ -1,5 +1,6 @@
 <?php
 
+// Add references
 require_once('Ioc/SContainerInterface.php');
 require_once('Ioc/SContainer.php');
 require_once('Lib/TestLib/TesterInterface.php');
@@ -16,8 +17,7 @@ require_once('Engine/WorkflowEngine.php');
 require_once('Engine/Parser/ParserInterface.php');
 require_once('Engine/Parser/JsonParser.php');
 require_once('Activities/TestActivity/TestActivity.php');
-
-phpinfo();
+require_once('Activities/FolderScanActivity/FolderScanActivity.php');
 
 $process = new Engine\Process;
 

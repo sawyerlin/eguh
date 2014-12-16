@@ -3,7 +3,7 @@
 class Tester implements TesterInterface {
 
     public function Test() {
-        echo "Test";
+        echo "Test"."\n";
     }
 }
 

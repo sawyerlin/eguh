@@ -13,7 +13,7 @@ class TestActivity extends Activity {
     }
 
     public function init() {
-        echo 'TestAction Init';
+        echo 'TestAction Init'."\n";
     }
 
     public function run() {

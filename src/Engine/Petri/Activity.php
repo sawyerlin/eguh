@@ -6,14 +6,16 @@ abstract class Activity {
 
     public $status;
 
-    protected function __construct() {
-    
+    protected $sharedDatas;
+
+    protected function __construct($sharedDatas) {
+
+        $this->sharedDatas = $sharedDatas;
     }
 
     abstract protected function init();
 
     abstract protected function run();
-
 }
 
 ?>

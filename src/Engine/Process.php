@@ -14,8 +14,15 @@ class Process {
     public $token;
 
     public $startPlace;
+
+    public $sharedDatas;
     
     public function __construct() {
+        $this->sharedDatas = [];
+        // Create IOC Container
+        $container = new SContainer;
+        $container->register("Lib\TestLib\TesterInterface", "Lib\TestLib\Tester");
+
         // Create StartPlace
         $this->startPlace = $startPlace = new Place;
         $startPlace->name = "Begin Place";
@@ -23,8 +30,6 @@ class Process {
         $startPlace->arcs = [];
 
         // Create Activity
-        $container = new SContainer;
-        $container->register("Lib\TestLib\TesterInterface", "Lib\TestLib\Tester");
         $activity = $container->resolve("Activities\TestActivity\TestActivity");
          
         // Create FirstTransition
@@ -45,9 +50,34 @@ class Process {
         $firstPlace->arcs = [];
 
         // Create FirstArc In
-        $firstArcIn= new Arc;
+        $firstArcIn = new Arc;
         $firstArcIn->node = $firstPlace;
         array_push($firstTransition->arcs, $firstArcIn);
+
+        // Create Activity
+        $activity = $container->resolve("Activities\FolderScanActivity\FolderScanActivity");
+
+        // Create SecondTransition
+        $secondTransition = new Transition($activity);
+        $secondTransition->name = "Second Transition";
+        $secondTransition->description = "Second Transition Description";
+        $secondTransition->arcs = [];
+
+        // Create SecondArc Out
+        $secondArcOut = new Arc;
+        $secondArcOut->node = $secondTransition;
+        array_push($firstPlace->arcs, $secondArcOut);
+
+        // Create SecondPlace
+        $secondPlace = new Place;
+        $secondPlace->name="Second Place";
+        $secondPlace->description = "Second Place Description";
+        $secondPlace->arcs = [];
+
+        // Create SecondArc In
+        $secondArcIn = new Arc;
+        $secondArcIn->node = $secondPlace;
+        array_push($secondTransition->arcs, $secondArcIn);
     }
 
     public function run() {
