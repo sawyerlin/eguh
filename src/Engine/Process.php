@@ -1,6 +1,6 @@
 <?php namespace Engine;
 
-use IOC\SContainer;
+use Ioc\SContainer;
 use Engine\Petri\Place;
 use Engine\Petri\Transition;
 use Engine\Petri\Arc;

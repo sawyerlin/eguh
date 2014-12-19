@@ -18,5 +18,3 @@ class Place extends Node {
         }
     }
 }
-
-?>

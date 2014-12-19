@@ -6,8 +6,8 @@ class FolderScanActivity extends Activity {
 
     private $folderPath = "/home/slin/test";
 
-    public function __construct($datas) {
-        parent::__construct($datas);
+    public function __construct() {
+        parent::__construct();
     }
 
     public function init() {
